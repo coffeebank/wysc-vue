@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/wysc-vue/CNAME"
   },
   {
-    "revision": "87f11f07e6064e7d143d",
+    "revision": "d59398962c5ad28cab23",
     "url": "/wysc-vue/css/app.d9e62618.css"
   },
   {
@@ -16,20 +16,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/wysc-vue/img/wsc-square-sm.15b460a9.png"
   },
   {
-    "revision": "00fc1c1a74187809defb093c82ec667e",
+    "revision": "5f9a52f6b712fb8f539ee3173eb2024d",
     "url": "/wysc-vue/index.html"
   },
   {
-    "revision": "87f11f07e6064e7d143d",
-    "url": "/wysc-vue/js/app.2ae8b728.js"
+    "revision": "d59398962c5ad28cab23",
+    "url": "/wysc-vue/js/app.1854483b.js"
   },
   {
     "revision": "dae1dd1ffa6cf11b6148",
     "url": "/wysc-vue/js/chunk-vendors.b5431fb4.js"
   },
   {
-    "revision": "0744ed33000d793daced",
-    "url": "/wysc-vue/js/showcase.fc145a24.js"
+    "revision": "7fbb1f060cfd902d8a90",
+    "url": "/wysc-vue/js/showcase.3a893726.js"
   },
   {
     "revision": "42577c0706bf229ad00375f4bdeffb19",
