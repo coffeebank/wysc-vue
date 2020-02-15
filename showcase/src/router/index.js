@@ -27,3 +27,7 @@ const router = new VueRouter({
 })
 
 export default router
+
+// export default new Router({
+//   mode: "history",
+//   base: "wysc-vue"

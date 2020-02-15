@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.21d0a3ec90dcfa9c801c917083b59af5.js"
+  "/wysc-vue/precache-manifest.8a6c130f7daa0d4ddc31dafa3d70d1fe.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "showcase"});
