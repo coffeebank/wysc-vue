@@ -10,8 +10,8 @@ module.exports = {
     {
       use: 'gridsome-source-google-sheets',
       options: {
-        sheetId: '1aO5OQv6-I7nYD32HE_uPZXqLbrcDL_MN9pNKWuWyUPk', 
-        apiKey: 'AIzaSyB9Gp1sFzcmG35Z3OIupDmTxN_nUdXFB94',
+        sheetId: process.env.googleSheetId, 
+        apiKey: process.env.googleSheetApiKey,
         // type: 'TYPE_NAME', //Optional - default is googleSheet. Used for graphql queries.
       }
     },

@@ -1,0 +1,11 @@
+https://animista.net/
+https://fonts.google.com/
+https://getwaves.io/
+https://www.gradientmagic.com/
+https://gridsome.org/
+https://pajasevi.github.io/CSSnowflakes/
+https://vuetifyjs.com/
+
+Reference:
+https://medium.com/risan/vue-chart-component-with-chart-js-db85a2d21288
+https://www.youtube.com/watch?v=-i6C9GE0oTA

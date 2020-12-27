@@ -7,12 +7,18 @@
     "explore": "gridsome explore"
   },
   "dependencies": {
+    "@amcharts/amcharts4": "^4.10.13",
     "@tailwindcss/postcss7-compat": "^2.0.2",
+    "apexcharts": "^3.23.0",
     "autoprefixer": "^9.8.6",
+    "chart.js": "^2.9.4",
     "gridsome": "^0.7.0",
     "gridsome-source-google-sheets": "^0.4.1",
     "postcss": "^7.0.35",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+    "vue-apexcharts": "^1.6.0",
+    "vue-chartjs": "^3.5.1",
+    "vue3-apexcharts": "^1.1.1",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {

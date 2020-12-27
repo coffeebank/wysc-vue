@@ -16,10 +16,10 @@ export default function (Vue, { router, isClient, appOptions, head }) {
     href: 'https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css',
   })
   
-  // head.link.push({
-  //   rel: 'stylesheet',
-  //   href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900',
-  // });
+  head.link.push({
+    rel: 'stylesheet',
+    href: 'https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Jost:ital,wght@0,300;0,400;0,600;1,400;1,600&display=swap',
+  });
   
   const opts = {} //opts includes, vuetify themes, icons, etc.
   Vue.use(Vuetify)
