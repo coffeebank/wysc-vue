@@ -1,4 +1,12 @@
 module.exports = {
+  purge: [
+    "./pages/**/*.vue", 
+    "./components/**/*.vue", 
+    "./plugins/**/*.vue",
+    "./static/**/*.vue",
+    "./store/**/*.vue"
+  ],
+  darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
       'xs': '410px',
@@ -11,6 +19,7 @@ module.exports = {
     extend: {
       animation: {
         'bounce-x': 'bounce-x 1s infinite',
+        'fade-in': 'fade-in 1s ease-in-out',
         wiggle: 'wiggle 1s ease-in-out infinite',
       },
       keyframes: {
@@ -23,6 +32,10 @@ module.exports = {
             transform: 'none',
             'animation-timing-function': 'cubic-bezier(0,0,0.2,1)',
           },
+        },
+        'fade-in': {
+         '0%': { opacity: '0' },
+         '100%': { opacity: '1' },
         },
         wiggle: {
          '0%, 100%': { transform: 'rotate(-3deg)' },
@@ -71,6 +84,7 @@ module.exports = {
         '52': '13rem',
         '60': '15rem',
         '20r': '20rem',
+        '24r': '24rem',
         '80p': '80vh',
       },
       maxHeight: {
@@ -89,6 +103,7 @@ module.exports = {
         '56': '14rem',
         '64': '16rem',
         '20r': '20rem',
+        '24r': '24rem',
         '80p': '80vh',
       },
       minHeight: {
@@ -107,6 +122,7 @@ module.exports = {
         '56': '14rem',
         '64': '16rem',
         '20r': '20rem',
+        '24r': '24rem',
         '80p': '80vh',
       },
       maxWidth: {
@@ -135,12 +151,13 @@ module.exports = {
         't6': '3rem',
         't8': '4rem',
       },
-    }
+    },
   },
   variants: {
     extend: {
       animation: ['hover', 'focus', 'active'],
       borderWidth: ['hover', 'focus'],
-    }
-  }
+    },
+  },
+  plugins: [],
 }

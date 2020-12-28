@@ -1,0 +1,12 @@
+module.exports = {
+  theme: {
+    extend: {
+    }
+  },
+  variants: {
+    extend: {
+      animation: ['hover', 'focus', 'active'],
+      borderWidth: ['hover', 'focus'],
+    }
+  }
+}

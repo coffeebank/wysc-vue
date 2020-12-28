@@ -6,6 +6,8 @@
 
 module.exports = {
   siteName: "Wrapped Wysc, 2020 Edition 🎁",
+  // siteUrl: 'https://coffeebank.github.io',
+  // pathPrefix: '/wysc-vue',
   plugins: [
     {
       use: 'gridsome-source-google-sheets',
@@ -17,16 +19,12 @@ module.exports = {
     },
     {
       use: "gridsome-plugin-tailwindcss",
-      /**
-      * These are the default options.
-
       options: {
         tailwindConfig: './tailwind.config.js',
         presetEnvConfig: {},
         shouldImport: false,
-        shouldTimeTravel: false
+        shouldTimeTravel: true
       }
-      */
     },
   ],
   templates: {

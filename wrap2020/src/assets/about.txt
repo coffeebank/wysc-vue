@@ -6,6 +6,9 @@ https://gridsome.org/
 https://pajasevi.github.io/CSSnowflakes/
 https://vuetifyjs.com/
 
+Assets:
+https://unsplash.com/photos/cb_ppfNXLSU
+
 Reference:
 https://medium.com/risan/vue-chart-component-with-chart-js-db85a2d21288
 https://www.youtube.com/watch?v=-i6C9GE0oTA

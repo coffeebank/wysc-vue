@@ -1,12 +1,10 @@
 <template>
   <v-app transition="fade-transition">
+
+    <div class="hidden" id="preloadImgDiv">
+    </div>
     
-    <v-window show-arrows class="bg-444444" 
-      v-for="(item, index)"
-      :key="index"
-      :title=item
-      @click="wwStoryPageNum(index)"
-    >
+    <v-window show-arrows class="bg-444444 h-screen overflow-hidden">
 
       <!-- <div class="w-24 h-screen left-0 absolute"></div>
       <div class="w-24 h-screen right-0 absolute"></div> -->
@@ -18,8 +16,8 @@
         <div class="w-12 sm:w-24 h-screen cursor-pointer" v-bind="attrs" v-on="on"></div>
       </template>
 
-      <v-window-item transition="fade-transition" reverse-transition="fade-transition" class="select-none cursor-default">
-        <div transition="fade-transition" class="w-full h-screen flex flex-wrap items-center place-content-between justify-center ww-landing bg-fixed bg-cover">
+      <v-window-item transition="slide-x-transition" reverse-transition="fade-transition" class="select-none cursor-default">
+        <div transition="fade-transition" class="w-full h-screen flex flex-wrap items-center place-content-between justify-center ww-landing ww-bg-move bg-fixed bg-cover">
           <nav class="flex items-center">
             <a href="https://wysc.us.to/" rel="noopener">
               <img src="https://wysc.us.to/media/wysc/wysc_maskable_icon.png" class="w-12 sm:w-16 w-12 sm:h-16 rounded-lg m-t2 shadow hover:shadow-lg transition-shadow" />
@@ -33,7 +31,7 @@
           </nav>
           <div class="w-full text-center px-t2 xs:px-t8">
             <div class="swing-in-bottom-bck w-full flex items-center justify-center transform-all">
-              <div class="text-2xl mr-t1 pb-t4 transform -rotate-12 transition-opacity opacity-0" aria-hidden="true" :class="{'opacity-100' : snowFall == true}">❄️</div>
+              <div class="text-2xl mr-t1 pb-t4 transform -rotate-12 transition-opacity duration-300 opacity-0" aria-hidden="true" :class="{'opacity-100' : snowFall == true}">❄️</div>
               <h1 class="text-4xl xs:text-5xl sm:text-6xl text-gray-200 font-gochi">Wysc 2020's</h1>
               <div class="text-2xl ml-t1 pb-t4 transform rotate-12" aria-hidden="true">☃️</div>
             </div>
@@ -70,19 +68,76 @@
         </div>
       </v-window-item>
 
-      <v-window-item  transition="fade-transition" reverse-transition="fade-transition">
-        <div class="w-full h-screen bg-indigo-600 text-white bg-fixed bg-cover">
+      <v-window-item transition="slide-x-transition" reverse-transition="fade-transition">
+        <div class="w-full animate-fade-in">
+          <div class="w-full h-screen ww-bg-2 ww-bg-move text-white bg-fixed bg-cover">
+  
+            <div class="grid gap-2 grid-cols-5">
+  
+              <div class="col-start-3 col-span-3 row-start-2 row-span-3">
+                <img class="rounded-lg shadow-lg fade-in-bottom select-none object-cover h-20r w-full" src="/media/nathan-dumlao-cb_ppfNXLSU-unsplash.jpg" />
+              </div>
+  
+              <div class="col-start-2 col-span-3 row-start-3 z-10">
+                <span class="font-gochi text-4xl xs:text-5xl sm:text-6xl text-gray-100 fade-in-bottom-02 ww-highlight-text bg-gradient-to-r from-purple-500 to-purple-500">Your contributions made this possible.</span>
+              </div>
 
-            <canvas id="my-chart" width="500" height="300"></canvas>
-          
+              <div class="col-start-1 col-span-5 row-start-5">
+                <div class="w-4/5 py-t2 mx-auto">
+                  <h2 class="text-4xl text-gray-200 font-gochi swing-in-bottom-bck-02 ww-highlight-text">We did it together...</h2>
+                </div>
+              </div>
+  
+              <div class="col-span-5 row-start-6 px-t4 sm:px-t8 md:col-span-3 md:col-start-2 py-t4 grid gap-8 grid-cols-1 sm:grid-cols-2 text-center">
+                <div>
+                  <h2 class="font-gochi text-8xl text-green-500">1600</h2>
+                  <span class="text-2xl ww-highlight-text bg-gradient-to-r from-purple-600 to-purple-600">members in Wysc (170% ⬆️)</span>
+                </div>
+                <div>
+                  <v-sparkline
+                    :value="msgValues"
+                    :gradient="gradient"
+                    :gradient-direction="gradientDirection"
+                    line-width="40"
+                    height="125"
+                    padding="0"
+                    stroke-linecap="round"
+                    type="bar"
+                    smooth
+                    auto-draw
+                    :fill="false"
+                    :auto-draw-duration="4000"
+                    :label-size="16"
+                  >
+                    <template v-slot:label="item">
+                      {{ item.value }}
+                    </template>
+                  </v-sparkline>
+                  <span class="italic">messages sent, in thousands</span>
+                </div>
+                <div>
+                  <h2 class="font-gochi text-8xl text-green-500">1600</h2>
+                  <span class="text-2xl ww-highlight-text bg-gradient-to-r from-purple-600 to-purple-600">members in Wysc (170% ⬆️)</span>
+                </div>
+                <div>
+                  <h2 class="font-gochi text-8xl text-green-500">1600</h2>
+                  <span class="text-2xl ww-highlight-text bg-gradient-to-r from-purple-600 to-purple-600">members in Wysc (170% ⬆️)</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
         </div>
       </v-window-item>
 
-      <v-window-item  transition="fade-transition" reverse-transition="fade-transition" v-for="n in 2" :key="`card-${n}`">
-        <div class="w-full h-screen bg-indigo-600 text-white bg-fixed bg-cover">Slide {{ n }}</div>
+      <v-window-item transition="slide-x-transition" reverse-transition="fade-transition" v-for="n in 2" :key="`card-${n}`" :eager="true">
+        <div class="w-full h-screen bg-indigo-600 text-white bg-fixed bg-cover" transition="fade-transition">
+          Slide {{ n }}
+          <canvas id="my-chart" width="500" height="300"></canvas>
+        </div>
       </v-window-item>
 
-      <v-window-item  transition="fade-transition" reverse-transition="fade-transition">
+      <v-window-item transition="slide-x-transition" reverse-transition="fade-transition">
         <div>
 
           <slot/>
@@ -101,8 +156,6 @@
       
     </v-window>
 
-
-
   </v-app>
 </template>
 
@@ -117,8 +170,48 @@ query {
 <script>
   import Chart from 'chart.js';
 
-  function wwStoryPageNum (wwStoryPageCount) {
-    if (wwStoryPageCount == "2") {
+  const gradients = [
+    ['#222'],
+    ['#42b3f4'],
+    ['red', 'orange', 'yellow'],
+    ['purple', 'violet'],
+    ['#00c6ff', '#F0F', '#FF0'],
+    ['#f72047', '#ffd200', '#1feaea'],
+  ]
+
+  export default {
+    data () {
+      return {
+        snowFall: false,
+        preloadImgs: [
+          "/media/nathan-dumlao-cb_ppfNXLSU-unsplash.jpg",
+        ],
+        memCount17: "250",
+        memCount18: "507",
+        memCount19: "973",
+        memCount20: "1686",
+        msgValues: [112, 202, 478, 951],
+        width: 4,
+        radius: 25,
+        padding: 8,
+        lineCap: 'round',
+        gradient: gradients[5],
+        value: [0, 112165, 202749, 478897, 951195],
+        gradientDirection: 'top',
+        gradients,
+        fill: false,
+        type: 'trend',
+        autoLineWidth: false,
+      }
+    },
+    mounted() {
+
+      for (var i = 0; i < this.preloadImgs.length; i++) {
+        let preloadImg = document.createElement('img')
+        preloadImg.src = this.preloadImgs[i]
+        document.getElementById('preloadImgDiv').appendChild(preloadImg)
+      }
+
       new Chart(document.getElementById('my-chart'), {
         type: 'line',
         data: {
@@ -131,37 +224,29 @@ query {
           ],
         },
         options: {
+          legend: {
+            display: false
+          },
           scales: {
             yAxes: [{
               ticks: {
                 beginAtZero: true
               }
             }]
+          },
+          title: {
+            display: false
+          },
+          tooltips: {
+            enabled: false
           }
         },
       });
     }
   }
-
-  export default {
-    data () {
-      return {
-        snowFall: false,
-        memCount17: "250",
-        memCount18: "507",
-        memCount19: "973",
-        memCount20: "1686",
-      }
-    },
-  }
 </script>
 
 <style>
-
-.hello {
-  width: 100%;
-  height: 500px;
-}
 
 html{
   overflow-y: hidden !important;
@@ -177,9 +262,14 @@ body {
 
 .ww-landing {
   background-image: radial-gradient( circle at 19% 90%, rgba(190, 190, 190, 0.04) 0%, rgba(190, 190, 190, 0.04) 17%, transparent 17%, transparent 100% ), radial-gradient( circle at 73% 2%, rgba(78, 78, 78, 0.04) 0%, rgba(78, 78, 78, 0.04) 94%, transparent 94%, transparent 100% ), radial-gradient( circle at 45% 2%, rgba(18, 18, 18, 0.04) 0%, rgba(18, 18, 18, 0.04) 55%, transparent 55%, transparent 100% ), radial-gradient( circle at 76% 60%, rgba(110, 110, 110, 0.04) 0%, rgba(110, 110, 110, 0.04) 34%, transparent 34%, transparent 100% ), radial-gradient( circle at 68% 56%, rgba(246, 246, 246, 0.04) 0%, rgba(246, 246, 246, 0.04) 16%, transparent 16%, transparent 100% ), radial-gradient( circle at 71% 42%, rgba(156, 156, 156, 0.04) 0%, rgba(156, 156, 156, 0.04) 47%, transparent 47%, transparent 100% ), radial-gradient( circle at 46% 82%, rgba(247, 247, 247, 0.04) 0%, rgba(247, 247, 247, 0.04) 39%, transparent 39%, transparent 100% ), radial-gradient( circle at 50% 47%, rgba(209, 209, 209, 0.04) 0%, rgba(209, 209, 209, 0.04) 45%, transparent 45%, transparent 100% ), linear-gradient(135deg, rgb(130,68,47), rgb(116,60,42));
-  background-size: 150% 150%;
-  animation: gradient 150s ease-in-out infinite;
 }
+.ww-bg-2 {
+  background-image: radial-gradient(circle at center right, rgb(43, 36, 140) 0%, rgb(43, 36, 140) 64%,rgb(51, 30, 166) 64%, rgb(51, 30, 166) 80%,rgb(59, 23, 191) 80%, rgb(59, 23, 191) 86%,rgb(67, 17, 217) 86%, rgb(67, 17, 217) 92%,rgb(75, 10, 242) 92%, rgb(75, 10, 242) 100%);}
+.ww-bg-move {
+  background-size: 150% 150%;
+  animation: gradient 120s ease-in-out infinite;
+}
+
 .ww-gradient-text {
   background-size: 200% 200% !important;
   animation: gradient 8s ease infinite !important;
@@ -188,6 +278,15 @@ body {
   0% {background-position: 0% 100%;}
   50% {background-position: 100% 100%;}
   100% {background-position: 0% 100%;}
+}
+
+.ww-highlight-text {
+  background-origin: 0;
+  background-size: 200% 50%;
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  transition: background-position 0.5s;
+  background-position: -100% 100%;
 }
 
 .ww-scrollsnap {
@@ -218,6 +317,20 @@ body {
  * See http://animista.net/license for more info. 
  * w: http://animista.net, t: @cssanimista
  * ---------------------------------------------- */
+.fade-in-bottom {
+	-webkit-animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 0.5s;
+	        animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 0.5s;
+}
+.fade-in-bottom-02 {
+	-webkit-animation: fade-in-bottom 3.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 1.5s;
+	        animation: fade-in-bottom 3.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 1.5s;
+}
+.fade-in-bottom-03 {
+	-webkit-animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 2.5s;
+	        animation: fade-in-bottom 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both 2.5s;
+}
+@-webkit-keyframes fade-in-bottom{0%{-webkit-transform:translateY(50px);transform:translateY(50px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}@keyframes fade-in-bottom{0%{-webkit-transform:translateY(50px);transform:translateY(50px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}
+
 .swing-in-bottom-bck {
     -webkit-animation: swing-in-bottom-bck 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
             animation: swing-in-bottom-bck 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
