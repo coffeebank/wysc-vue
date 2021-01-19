@@ -18,7 +18,7 @@ export default function (Vue, { router, isClient, appOptions, head }) {
   
   head.link.push({
     rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Jost:ital,wght@0,300;0,400;0,600;1,400;1,600&display=swap',
+    href: 'https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Jost:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Patrick+Hand+SC&display=swap',
   });
   
   const opts = {} //opts includes, vuetify themes, icons, etc.

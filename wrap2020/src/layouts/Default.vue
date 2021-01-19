@@ -1,161 +1,21 @@
 <template>
-  <v-app transition="fade-transition">
+  <v-app>
 
-    <div class="hidden" id="preloadImgDiv">
-    </div>
-    
-    <v-window show-arrows class="bg-444444 h-screen overflow-hidden">
+      <slot/>
 
-      <!-- <div class="w-24 h-screen left-0 absolute"></div>
-      <div class="w-24 h-screen right-0 absolute"></div> -->
-
-      <template v-slot:prev="{ on, attrs }">
-        <div class="w-12 sm:w-24 h-screen cursor-pointer" v-bind="attrs" v-on="on"></div>
-      </template>
-      <template v-slot:next="{ on, attrs }">
-        <div class="w-12 sm:w-24 h-screen cursor-pointer" v-bind="attrs" v-on="on"></div>
-      </template>
-
-      <v-window-item transition="slide-x-transition" reverse-transition="fade-transition" class="select-none cursor-default">
-        <div transition="fade-transition" class="w-full h-screen flex flex-wrap items-center place-content-between justify-center ww-landing ww-bg-move bg-fixed bg-cover">
-          <nav class="flex items-center">
-            <a href="https://wysc.us.to/" rel="noopener">
-              <img src="https://wysc.us.to/media/wysc/wysc_maskable_icon.png" class="w-12 sm:w-16 w-12 sm:h-16 rounded-lg m-t2 shadow hover:shadow-lg transition-shadow" />
-            </a>
-            <div class="hidden sm:flex items-center transform hover:scale-x-105 transition-transform active:animate-ping cursor-pointer">
-              <h1 class="text-4xl font-bold font-gochi ml-t1 text-gray-300">Wrapped</h1>
-              <div class="text-xl -ml-t1 pb-t4 transform rotate-12">🎀</div>
-            </div>
-            <div class="flex-grow"></div>
-            <h1 class="swing-in-bottom-bck-03 xs:text-lg sm:text-xl font-jost font-bold break-all mx-t1 xs:mx-t4 text-gray-300" v-if="this.$router.history.current.path != '/'">for {{$page.googleSheet.user}}</h1>
-          </nav>
-          <div class="w-full text-center px-t2 xs:px-t8">
-            <div class="swing-in-bottom-bck w-full flex items-center justify-center transform-all">
-              <div class="text-2xl mr-t1 pb-t4 transform -rotate-12 transition-opacity duration-300 opacity-0" aria-hidden="true" :class="{'opacity-100' : snowFall == true}">❄️</div>
-              <h1 class="text-4xl xs:text-5xl sm:text-6xl text-gray-200 font-gochi">Wysc 2020's</h1>
-              <div class="text-2xl ml-t1 pb-t4 transform rotate-12" aria-hidden="true">☃️</div>
-            </div>
-            <div class="swing-in-bottom-bck-02">
-              <div class="transition-transform transform hover:scale-105 cursor-pointer" @click="snowFall = !snowFall">
-                <h1 class="text-5xl xs:text-7xl sm:text-8xl font-gochi bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-red-400 to-green-300 ww-gradient-text">Wrapped Stats</h1>
-              </div>
-            </div>
-            <div class="swing-in-bottom-bck-03">
-              <div class="hidden lg:block text-lg sm:text-xl text-pink-300 animate-bounce-x mt-t6 pl-t2">Click your screen's right edge to start&ensp;&blacktriangleright;</div>
-              <div class="lg:hidden xs:text-lg sm:text-xl text-pink-300 animate-bounce-x mt-t6 pl-t2">Tap your screen's right edge to start&ensp;&blacktriangleright;</div>
-            </div>
-          </div>
-          <div class="w-full">
-            <nav aria-label="Footer" class="swing-in-bottom-bck-03 w-full flex items-center p-t2 -mb-t1">
-              <a href="https://wysc.us.to/wrapped/about" rel="noopener">
-                <div class="bg-transparent border-solid text-sm font-bold border-2 border-gray-300 text-gray-300 px-t2 py-t1 transition-all duration-300 rounded hover:text-yellow-500 hover:border-yellow-500">About</div>
-              </a>
-              <div class="flex-grow"></div>
-              <div class="text-gray-200">&copy; 2021, by Wysc</div>
-            </nav>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 59">
-              <path
-                fill="#f3f4f5"
-                fill-opacity="1"
-                d="m 0,6.45241 14.1,6.45242 c 14.1,6.45242 41.9,19.35726 70.9,27.9672 27.9,8.52929 56,12.96533 84,6.45242 28.6,-6.39193 57,-23.7328 85,-23.67231 28.4,-0.0605 57,17.28038 85,19.35726 28.1,2.15752 56,-10.74731 85,-13.97352 27.8,-3.22621 56,3.22621 84,3.22621 28.5,0 57,-6.45242 85,-9.67863 28.2,-3.22621 56,-3.22621 85,0 27.9,3.22621 56,9.67863 84,16.13105 28.6,6.45241 57,12.90483 85,9.67862 28.3,-3.22621 57,-16.13104 85,-16.13104 28,0 56,12.90483 84,16.13104 28.7,3.22621 57,-3.22621 85,-9.67862 28.4,-6.45242 57,-12.90484 85,-11.83616 28.1,1.14934 56,9.61814 85,9.67863 27.8,-0.0605 56,-8.52929 84,-16.13105 28.5,-7.5211 57,-13.97352 71,-17.19973 L 1440,0 v 58.07176 h -14.1 c -14.1,0 -41.9,0 -70.9,0 -27.9,0 -56,0 -84,0 -28.6,0 -57,0 -85,0 -28.4,0 -57,0 -85,0 -28.1,0 -56,0 -85,0 -27.8,0 -56,0 -84,0 -28.5,0 -57,0 -85,0 -28.2,0 -56,0 -85,0 -27.9,0 -56,0 -84,0 -28.6,0 -57,0 -85,0 -28.3,0 -57,0 -85,0 -28,0 -56,0 -84,0 -28.7,0 -57,0 -85,0 -28.4,0 -57,0 -85,0 -28.1,0 -56,0 -85,0 -27.8,0 -56,0 -84,0 -28.5,0 -57,0 -71,0 H 0 Z"
-                id="path2"
-                style="stroke-width:0.449041" />
-            </svg>
-          </div>
-        </div>
-        <div class="snowflakes" aria-hidden="true" v-if="snowFall == true">
-          <div class="snowflake"> ❅</div><div class="snowflake"> ❆</div><div class="snowflake"> ❅</div><div class="snowflake"> ❆</div><div class="snowflake"> ❅</div><div class="snowflake"> ❆</div><div class="snowflake"> ❅</div><div class="snowflake"> ❆</div><div class="snowflake"> ❅</div><div class="snowflake"> ❆</div><div class="snowflake"> ❅</div><div class="snowflake"> ❆</div>
-        </div>
-      </v-window-item>
-
-      <v-window-item transition="slide-x-transition" reverse-transition="fade-transition">
-        <div class="w-full animate-fade-in">
-          <div class="w-full h-screen ww-bg-2 ww-bg-move text-white bg-fixed bg-cover">
-  
-            <div class="grid gap-2 grid-cols-5">
-  
-              <div class="col-start-3 col-span-3 row-start-2 row-span-3">
-                <img class="rounded-lg shadow-lg fade-in-bottom select-none object-cover h-20r w-full" src="/media/nathan-dumlao-cb_ppfNXLSU-unsplash.jpg" />
-              </div>
-  
-              <div class="col-start-2 col-span-3 row-start-3 z-10">
-                <span class="font-gochi text-4xl xs:text-5xl sm:text-6xl text-gray-100 fade-in-bottom-02 ww-highlight-text bg-gradient-to-r from-purple-500 to-purple-500">Your contributions made this possible.</span>
-              </div>
-
-              <div class="col-start-1 col-span-5 row-start-5">
-                <div class="w-4/5 py-t2 mx-auto">
-                  <h2 class="text-4xl text-gray-200 font-gochi swing-in-bottom-bck-02 ww-highlight-text">We did it together...</h2>
-                </div>
-              </div>
-  
-              <div class="col-span-5 row-start-6 px-t4 sm:px-t8 md:col-span-3 md:col-start-2 py-t4 grid gap-8 grid-cols-1 sm:grid-cols-2 text-center">
-                <div>
-                  <h2 class="font-gochi text-8xl text-green-500">1600</h2>
-                  <span class="text-2xl ww-highlight-text bg-gradient-to-r from-purple-600 to-purple-600">members in Wysc (170% ⬆️)</span>
-                </div>
-                <div>
-                  <v-sparkline
-                    :value="msgValues"
-                    :gradient="gradient"
-                    :gradient-direction="gradientDirection"
-                    line-width="40"
-                    height="125"
-                    padding="0"
-                    stroke-linecap="round"
-                    type="bar"
-                    smooth
-                    auto-draw
-                    :fill="false"
-                    :auto-draw-duration="4000"
-                    :label-size="16"
-                  >
-                    <template v-slot:label="item">
-                      {{ item.value }}
-                    </template>
-                  </v-sparkline>
-                  <span class="italic">messages sent, in thousands</span>
-                </div>
-                <div>
-                  <h2 class="font-gochi text-8xl text-green-500">1600</h2>
-                  <span class="text-2xl ww-highlight-text bg-gradient-to-r from-purple-600 to-purple-600">members in Wysc (170% ⬆️)</span>
-                </div>
-                <div>
-                  <h2 class="font-gochi text-8xl text-green-500">1600</h2>
-                  <span class="text-2xl ww-highlight-text bg-gradient-to-r from-purple-600 to-purple-600">members in Wysc (170% ⬆️)</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </v-window-item>
-
-      <v-window-item transition="slide-x-transition" reverse-transition="fade-transition" v-for="n in 2" :key="`card-${n}`" :eager="true">
-        <div class="w-full h-screen bg-indigo-600 text-white bg-fixed bg-cover" transition="fade-transition">
-          Slide {{ n }}
-          <canvas id="my-chart" width="500" height="300"></canvas>
-        </div>
-      </v-window-item>
-
-      <v-window-item transition="slide-x-transition" reverse-transition="fade-transition">
-        <div>
-
-          <slot/>
-
-          <header class="header h-screen">
-            <strong>
-              <g-link to="/">{{ $static.metadata.siteName }}</g-link>
-            </strong>
-            <nav class="nav">
-              <g-link class="nav__link" to="/">Home</g-link>
-              <g-link class="nav__link" to="/about/">About</g-link>
-            </nav>
-          </header>
-        </div>
-      </v-window-item>
+      <div class="pb-48">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel molestiae temporibus repudiandae reprehenderit dolore nam magnam eum asperiores suscipit numquam odit rem, sit illo, blanditiis ad saepe labore pariatur assumenda?
+      </div>
+      <div class="pb-48">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel molestiae temporibus repudiandae reprehenderit dolore nam magnam eum asperiores suscipit numquam odit rem, sit illo, blanditiis ad saepe labore pariatur assumenda?
+      </div>
+      <div class="pb-48">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel molestiae temporibus repudiandae reprehenderit dolore nam magnam eum asperiores suscipit numquam odit rem, sit illo, blanditiis ad saepe labore pariatur assumenda?
+      </div>
+      <div class="pb-48">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel molestiae temporibus repudiandae reprehenderit dolore nam magnam eum asperiores suscipit numquam odit rem, sit illo, blanditiis ad saepe labore pariatur assumenda?
+      </div>
       
-    </v-window>
-
   </v-app>
 </template>
 
@@ -168,92 +28,65 @@ query {
 </static-query>
 
 <script>
-  import Chart from 'chart.js';
-
-  const gradients = [
-    ['#222'],
-    ['#42b3f4'],
-    ['red', 'orange', 'yellow'],
-    ['purple', 'violet'],
-    ['#00c6ff', '#F0F', '#FF0'],
-    ['#f72047', '#ffd200', '#1feaea'],
-  ]
-
   export default {
     data () {
       return {
-        snowFall: false,
-        preloadImgs: [
-          "/media/nathan-dumlao-cb_ppfNXLSU-unsplash.jpg",
-        ],
-        memCount17: "250",
-        memCount18: "507",
-        memCount19: "973",
-        memCount20: "1686",
-        msgValues: [112, 202, 478, 951],
-        width: 4,
-        radius: 25,
-        padding: 8,
-        lineCap: 'round',
-        gradient: gradients[5],
-        value: [0, 112165, 202749, 478897, 951195],
-        gradientDirection: 'top',
-        gradients,
-        fill: false,
-        type: 'trend',
-        autoLineWidth: false,
       }
     },
     mounted() {
+      // for (var i = 0; i < this.preloadImgs.length; i++) {
+      //   let preloadImg = document.createElement('img')
+      //   preloadImg.src = this.preloadImgs[i]
+      //   document.getElementById('preloadImgDiv').appendChild(preloadImg)
+      // }
 
-      for (var i = 0; i < this.preloadImgs.length; i++) {
-        let preloadImg = document.createElement('img')
-        preloadImg.src = this.preloadImgs[i]
-        document.getElementById('preloadImgDiv').appendChild(preloadImg)
-      }
-
-      new Chart(document.getElementById('my-chart'), {
-        type: 'line',
-        data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-          datasets: [
-            {
-              label: '2018 Sales',
-              data: [300, 700, 450, 750, 450]
-            }
-          ],
-        },
-        options: {
-          legend: {
-            display: false
-          },
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          },
-          title: {
-            display: false
-          },
-          tooltips: {
-            enabled: false
-          }
-        },
-      });
+      // new Chart(document.getElementById('my-chart'), {
+      //   type: 'line',
+      //   data: {
+      //     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+      //     datasets: [
+      //       {
+      //         label: '2018 Sales',
+      //         data: [300, 700, 450, 750, 450]
+      //       }
+      //     ],
+      //   },
+      //   options: {
+      //     legend: {
+      //       display: false
+      //     },
+      //     scales: {
+      //       yAxes: [{
+      //         ticks: {
+      //           beginAtZero: true
+      //         }
+      //       }]
+      //     },
+      //     title: {
+      //       display: false
+      //     },
+      //     tooltips: {
+      //       enabled: false
+      //     }
+      //   },
+      // });
     }
   }
 </script>
 
 <style>
 
-html{
-  overflow-y: hidden !important;
+.bg-2020review {
+background-color: #914c35;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2000' height='1000' viewBox='0 0 1600 800'%3E%3Cpath fill='%23aaaaaa' d='M1102.5 734.8c2.5-1.2 24.8-8.6 25.6-7.5.5.7-3.9 23.8-4.6 24.5C1123.3 752.1 1107.5 739.5 1102.5 734.8zM1226.3 229.1c0-.1-4.9-9.4-7-14.2-.1-.3-.3-1.1-.4-1.6-.1-.4-.3-.7-.6-.9-.3-.2-.6-.1-.8.1l-13.1 12.3c0 0 0 0 0 0-.2.2-.3.5-.4.8 0 .3 0 .7.2 1 .1.1 1.4 2.5 2.1 3.6 2.4 3.7 6.5 12.1 6.5 12.2.2.3.4.5.7.6.3 0 .5-.1.7-.3 0 0 1.8-2.5 2.7-3.6 1.5-1.6 3-3.2 4.6-4.7 1.2-1.2 1.6-1.4 2.1-1.6.5-.3 1.1-.5 2.5-1.9C1226.5 230.4 1226.6 229.6 1226.3 229.1zM33 770.3C33 770.3 33 770.3 33 770.3c0-.7-.5-1.2-1.2-1.2-.1 0-.3 0-.4.1-1.6.2-14.3.1-22.2 0-.3 0-.6.1-.9.4-.2.2-.4.5-.4.9 0 .2 0 4.9.1 5.9l.4 13.6c0 .3.2.6.4.9.2.2.5.3.8.3 0 0 .1 0 .1 0 7.3-.7 14.7-.9 22-.6.3 0 .7-.1.9-.3.2-.2.4-.6.4-.9C32.9 783.3 32.9 776.2 33 770.3z'/%3E%3Cpath fill='%23cccccc' d='M171.1 383.4c1.3-2.5 14.3-22 15.6-21.6.8.3 11.5 21.2 11.5 22.1C198.1 384.2 177.9 384 171.1 383.4zM596.4 711.8c-.1-.1-6.7-8.2-9.7-12.5-.2-.3-.5-1-.7-1.5-.2-.4-.4-.7-.7-.8-.3-.1-.6 0-.8.3L574 712c0 0 0 0 0 0-.2.2-.2.5-.2.9 0 .3.2.7.4.9.1.1 1.8 2.2 2.8 3.1 3.1 3.1 8.8 10.5 8.9 10.6.2.3.5.4.8.4.3 0 .5-.2.6-.5 0 0 1.2-2.8 2-4.1 1.1-1.9 2.3-3.7 3.5-5.5.9-1.4 1.3-1.7 1.7-2 .5-.4 1-.7 2.1-2.4C596.9 713.1 596.8 712.3 596.4 711.8zM727.5 179.9C727.5 179.9 727.5 179.9 727.5 179.9c.6.2 1.3-.2 1.4-.8 0-.1 0-.2 0-.4.2-1.4 2.8-12.6 4.5-19.5.1-.3 0-.6-.2-.8-.2-.3-.5-.4-.8-.5-.2 0-4.7-1.1-5.7-1.3l-13.4-2.7c-.3-.1-.7 0-.9.2-.2.2-.4.4-.5.6 0 0 0 .1 0 .1-.8 6.5-2.2 13.1-3.9 19.4-.1.3 0 .6.2.9.2.3.5.4.8.5C714.8 176.9 721.7 178.5 727.5 179.9zM728.5 178.1c-.1-.1-.2-.2-.4-.2C728.3 177.9 728.4 178 728.5 178.1z'/%3E%3Cg fill-opacity='0.3' fill='%23FFF'%3E%3Cpath d='M699.6 472.7c-1.5 0-2.8-.8-3.5-2.3-.8-1.9 0-4.2 1.9-5 3.7-1.6 6.8-4.7 8.4-8.5 1.6-3.8 1.7-8.1.2-11.9-.3-.9-.8-1.8-1.2-2.8-.8-1.7-1.8-3.7-2.3-5.9-.9-4.1-.2-8.6 2-12.8 1.7-3.1 4.1-6.1 7.6-9.1 1.6-1.4 4-1.2 5.3.4 1.4 1.6 1.2 4-.4 5.3-2.8 2.5-4.7 4.7-5.9 7-1.4 2.6-1.9 5.3-1.3 7.6.3 1.4 1 2.8 1.7 4.3.5 1.1 1 2.2 1.5 3.3 2.1 5.6 2 12-.3 17.6-2.3 5.5-6.8 10.1-12.3 12.5C700.6 472.6 700.1 472.7 699.6 472.7zM740.4 421.4c1.5-.2 3 .5 3.8 1.9 1.1 1.8.4 4.2-1.4 5.3-3.7 2.1-6.4 5.6-7.6 9.5-1.2 4-.8 8.4 1.1 12.1.4.9 1 1.7 1.6 2.7 1 1.7 2.2 3.5 3 5.7 1.4 4 1.2 8.7-.6 13.2-1.4 3.4-3.5 6.6-6.8 10.1-1.5 1.6-3.9 1.7-5.5.2-1.6-1.4-1.7-3.9-.2-5.4 2.6-2.8 4.3-5.3 5.3-7.7 1.1-2.8 1.3-5.6.5-7.9-.5-1.3-1.3-2.7-2.2-4.1-.6-1-1.3-2.1-1.9-3.2-2.8-5.4-3.4-11.9-1.7-17.8 1.8-5.9 5.8-11 11.2-14C739.4 421.6 739.9 421.4 740.4 421.4zM261.3 590.9c5.7 6.8 9 15.7 9.4 22.4.5 7.3-2.4 16.4-10.2 20.4-3 1.5-6.7 2.2-11.2 2.2-7.9-.1-12.9-2.9-15.4-8.4-2.1-4.7-2.3-11.4 1.8-15.9 3.2-3.5 7.8-4.1 11.2-1.6 1.2.9 1.5 2.7.6 3.9-.9 1.2-2.7 1.5-3.9.6-1.8-1.3-3.6.6-3.8.8-2.4 2.6-2.1 7-.8 9.9 1.5 3.4 4.7 5 10.4 5.1 3.6 0 6.4-.5 8.6-1.6 4.7-2.4 7.7-8.6 7.2-15-.5-7.3-5.3-18.2-13-23.9-4.2-3.1-8.5-4.1-12.9-3.1-3.1.7-6.2 2.4-9.7 5-6.6 5.1-11.7 11.8-14.2 19-2.7 7.7-2.1 15.8 1.9 23.9.7 1.4.1 3.1-1.3 3.7-1.4.7-3.1.1-3.7-1.3-4.6-9.4-5.4-19.2-2.2-28.2 2.9-8.2 8.6-15.9 16.1-21.6 4.1-3.1 8-5.1 11.8-6 6-1.4 12 0 17.5 4C257.6 586.9 259.6 588.8 261.3 590.9z'/%3E%3Ccircle cx='1013.7' cy='153.9' r='7.1'/%3E%3Ccircle cx='1024.3' cy='132.1' r='7.1'/%3E%3Ccircle cx='1037.3' cy='148.9' r='7.1'/%3E%3Cpath d='M1508.7 297.2c-4.8-5.4-9.7-10.8-14.8-16.2 5.6-5.6 11.1-11.5 15.6-18.2 1.2-1.7.7-4.1-1-5.2-1.7-1.2-4.1-.7-5.2 1-4.2 6.2-9.1 11.6-14.5 16.9-4.8-5-9.7-10-14.7-14.9-1.5-1.5-3.9-1.5-5.3 0-1.5 1.5-1.5 3.9 0 5.3 4.9 4.8 9.7 9.8 14.5 14.8-1.1 1.1-2.3 2.2-3.5 3.2-4.1 3.8-8.4 7.8-12.4 12-1.4 1.5-1.4 3.8 0 5.3 0 0 0 0 0 0 1.5 1.4 3.9 1.4 5.3-.1 3.9-4 8.1-7.9 12.1-11.7 1.2-1.1 2.3-2.2 3.5-3.3 4.9 5.3 9.8 10.6 14.6 15.9.1.1.1.1.2.2 1.4 1.4 3.7 1.5 5.2.2C1510 301.2 1510.1 298.8 1508.7 297.2zM327.6 248.6l-.4-2.6c-1.5-11.1-2.2-23.2-2.3-37 0-5.5 0-11.5.2-18.5 0-.7 0-1.5 0-2.3 0-5 0-11.2 3.9-13.5 2.2-1.3 5.1-1 8.5.9 5.7 3.1 13.2 8.7 17.5 14.9 5.5 7.8 7.3 16.9 5 25.7-3.2 12.3-15 31-30 32.1L327.6 248.6zM332.1 179.2c-.2 0-.3 0-.4.1-.1.1-.7.5-1.1 2.7-.3 1.9-.3 4.2-.3 6.3 0 .8 0 1.7 0 2.4-.2 6.9-.2 12.8-.2 18.3.1 12.5.7 23.5 2 33.7 11-2.7 20.4-18.1 23-27.8 1.9-7.2.4-14.8-4.2-21.3l0 0C347 188.1 340 183 335 180.3 333.6 179.5 332.6 179.2 332.1 179.2zM516.3 60.8c-.1 0-.2 0-.4-.1-2.4-.7-4-.9-6.7-.7-.7 0-1.3-.5-1.4-1.2 0-.7.5-1.3 1.2-1.4 3.1-.2 4.9 0 7.6.8.7.2 1.1.9.9 1.6C517.3 60.4 516.8 60.8 516.3 60.8zM506.1 70.5c-.5 0-1-.3-1.2-.8-.8-2.1-1.2-4.3-1.3-6.6 0-.7.5-1.3 1.2-1.3.7 0 1.3.5 1.3 1.2.1 2 .5 3.9 1.1 5.8.2.7-.1 1.4-.8 1.6C506.4 70.5 506.2 70.5 506.1 70.5zM494.1 64.4c-.4 0-.8-.2-1-.5-.4-.6-.3-1.4.2-1.8 1.8-1.4 3.7-2.6 5.8-3.6.6-.3 1.4 0 1.7.6.3.6 0 1.4-.6 1.7-1.9.9-3.7 2-5.3 3.3C494.7 64.3 494.4 64.4 494.1 64.4zM500.5 55.3c-.5 0-.9-.3-1.2-.7-.5-1-1.2-1.9-2.4-3.4-.3-.4-.7-.9-1.1-1.4-.4-.6-.3-1.4.2-1.8.6-.4 1.4-.3 1.8.2.4.5.8 1 1.1 1.4 1.3 1.6 2.1 2.6 2.7 3.9.3.6 0 1.4-.6 1.7C500.9 55.3 500.7 55.3 500.5 55.3zM506.7 55c-.3 0-.5-.1-.8-.2-.6-.4-.7-1.2-.3-1.8 1.2-1.7 2.3-3.4 3.3-5.2.3-.6 1.1-.9 1.7-.5.6.3.9 1.1.5 1.7-1 1.9-2.2 3.8-3.5 5.6C507.4 54.8 507.1 55 506.7 55zM1029.3 382.8c-.1 0-.2 0-.4-.1-2.4-.7-4-.9-6.7-.7-.7 0-1.3-.5-1.4-1.2 0-.7.5-1.3 1.2-1.4 3.1-.2 4.9 0 7.6.8.7.2 1.1.9.9 1.6C1030.3 382.4 1029.8 382.8 1029.3 382.8zM1019.1 392.5c-.5 0-1-.3-1.2-.8-.8-2.1-1.2-4.3-1.3-6.6 0-.7.5-1.3 1.2-1.3.7 0 1.3.5 1.3 1.2.1 2 .5 3.9 1.1 5.8.2.7-.1 1.4-.8 1.6C1019.4 392.5 1019.2 392.5 1019.1 392.5zM1007.1 386.4c-.4 0-.8-.2-1-.5-.4-.6-.3-1.4.2-1.8 1.8-1.4 3.7-2.6 5.8-3.6.6-.3 1.4 0 1.7.6.3.6 0 1.4-.6 1.7-1.9.9-3.7 2-5.3 3.3C1007.7 386.3 1007.4 386.4 1007.1 386.4zM1013.5 377.3c-.5 0-.9-.3-1.2-.7-.5-1-1.2-1.9-2.4-3.4-.3-.4-.7-.9-1.1-1.4-.4-.6-.3-1.4.2-1.8.6-.4 1.4-.3 1.8.2.4.5.8 1 1.1 1.4 1.3 1.6 2.1 2.6 2.7 3.9.3.6 0 1.4-.6 1.7C1013.9 377.3 1013.7 377.3 1013.5 377.3zM1019.7 377c-.3 0-.5-.1-.8-.2-.6-.4-.7-1.2-.3-1.8 1.2-1.7 2.3-3.4 3.3-5.2.3-.6 1.1-.9 1.7-.5.6.3.9 1.1.5 1.7-1 1.9-2.2 3.8-3.5 5.6C1020.4 376.8 1020.1 377 1019.7 377zM1329.7 573.4c-1.4 0-2.9-.2-4.5-.7-8.4-2.7-16.6-12.7-18.7-20-.4-1.4-.7-2.9-.9-4.4-8.1 3.3-15.5 10.6-15.4 21 0 1.5-1.2 2.7-2.7 2.8 0 0 0 0 0 0-1.5 0-2.7-1.2-2.7-2.7-.1-6.7 2.4-12.9 7-18 3.6-4 8.4-7.1 13.7-8.8.5-6.5 3.1-12.9 7.4-17.4 7-7.4 18.2-8.9 27.3-10.1l.7-.1c1.5-.2 2.9.9 3.1 2.3.2 1.5-.9 2.9-2.3 3.1l-.7.1c-8.6 1.2-18.4 2.5-24 8.4-3 3.2-5 7.7-5.7 12.4 7.9-1 17.7 1.3 24.3 5.7 4.3 2.9 7.1 7.8 7.2 12.7.2 4.3-1.7 8.3-5.2 11.1C1335.2 572.4 1332.6 573.4 1329.7 573.4zM1311 546.7c.1 1.5.4 3 .8 4.4 1.7 5.8 8.7 14.2 15.1 16.3 2.8.9 5.1.5 7.2-1.1 2.7-2.1 3.2-4.8 3.1-6.6-.1-3.2-2-6.4-4.8-8.3C1326.7 547.5 1317.7 545.6 1311 546.7z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
+/* html{
+  overflow-y: hidden !important;
+} */
+
 body {
-  font-family: "Jost", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Patrick Hand SC", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   margin: 0;
   padding: 0;
   line-height: 1.5;
@@ -364,7 +197,7 @@ body {
   font-family: Arial, sans-serif;
   /* text-shadow: 0 0 5px #000; */
 }
-@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%,100%{-webkit-transform:translateX(0);transform:translateX(0)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%,100%{transform:translateX(0)}50%{transform:translateX(80px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}.snowflake:nth-of-type(10){left:25%;-webkit-animation-delay:2s,0s;animation-delay:2s,0s}.snowflake:nth-of-type(11){left:65%;-webkit-animation-delay:4s,2.5s;animation-delay:4s,2.5s}
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%,100%{-webkit-transform:translateX(0);transform:translateX(0)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%,100%{transform:translateX(0)}50%{transform:translateX(80px)}}.snowflake{position:fixed;top:-10%;/*z-index:9999;*/-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}.snowflake:nth-of-type(10){left:25%;-webkit-animation-delay:2s,0s;animation-delay:2s,0s}.snowflake:nth-of-type(11){left:65%;-webkit-animation-delay:4s,2.5s;animation-delay:4s,2.5s}
 
 
 /* .layout {

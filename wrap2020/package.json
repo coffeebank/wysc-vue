@@ -15,6 +15,7 @@
     "gridsome-source-google-sheets": "^0.4.1",
     "n": "^7.0.0",
     "postcss": "^7.0.35",
+    "rellax": "^1.12.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "vuetify": "^2.4.0"
   },
